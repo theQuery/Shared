@@ -68,6 +68,7 @@ int main()
     if (is_success)
     {
         int is_success = change_display_resolution(display_settings);
+
         if (is_success)
         {
             show_message_box("Your screen resolution has changed.",
