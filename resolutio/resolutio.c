@@ -28,7 +28,7 @@ struct DisplaySettings get_display_settings()
     return display_settings;
 }
 
-void change_display_resolution(struct DisplaySettings display_settings)
+int change_display_resolution(struct DisplaySettings display_settings)
 {
     struct _devicemodeW DEVICE_MODEW = display_settings.DEVICE_MODEW;
 
@@ -49,7 +49,10 @@ void change_display_resolution(struct DisplaySettings display_settings)
         DEVICE_MODEW.dmPelsHeight = uhd_height;
     }
 
-    ChangeDisplaySettingsW(&DEVICE_MODEW, 0);
+    long status_code = ChangeDisplaySettingsW(&DEVICE_MODEW, 0);
+    int is_success = status_code == DISP_CHANGE_SUCCESSFUL;
+
+    return is_success;
 }
 
 void show_message_box(char text[], long flags)
@@ -64,12 +67,22 @@ int main()
 
     if (is_success)
     {
-        change_display_resolution(display_settings);
-        show_message_box("Your screen resolution has changed.", 0x00080040L);
+        int is_success = change_display_resolution(display_settings);
+        if (is_success)
+        {
+            show_message_box("Your screen resolution has changed.",
+                             0x00080040L);
+        }
+        else
+        {
+            show_message_box("Couldn't change the display settings...",
+                             0x00080010L);
+        }
     }
     else
     {
-        show_message_box("Something went wrong...", 0x00080030L);
+        show_message_box("Couldn't find the display...",
+                         0x00080010L);
     }
 
     return 0;
