@@ -55,9 +55,25 @@ int change_display_resolution(struct DisplaySettings display_settings)
     return is_success;
 }
 
-void show_message_box(char text[], long flags)
+void show_message_box(int type)
 {
-    MessageBox(0, text, "Toggle Resolution", flags);
+    char window_title[] = "Toggle Resolution";
+
+    switch (type)
+    {
+    case 1:
+        MessageBox(0, "Your screen resolution has changed.",
+                   window_title, 0x00080040L);
+        break;
+    case 2:
+        MessageBox(0, "Couldn't change the display settings...",
+                   window_title, 0x00080010L);
+        break;
+    case 3:
+        MessageBox(0, "Couldn't find the display...",
+                   window_title, 0x00080010L);
+        break;
+    }
 }
 
 int main()
@@ -68,22 +84,11 @@ int main()
     if (is_success)
     {
         int is_success = change_display_resolution(display_settings);
-
-        if (is_success)
-        {
-            show_message_box("Your screen resolution has changed.",
-                             0x00080040L);
-        }
-        else
-        {
-            show_message_box("Couldn't change the display settings...",
-                             0x00080010L);
-        }
+        show_message_box(is_success ? 1 : 2);
     }
     else
     {
-        show_message_box("Couldn't find the display...",
-                         0x00080010L);
+        show_message_box(3);
     }
 
     return 0;
