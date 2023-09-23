@@ -1,0 +1,62 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+html {
+    display: grid;
+    height: 100%;
+}
+
+body {
+    display: grid;
+    place-content: center;
+    gap: 20px;
+    padding: 20px;
+    background: black;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.title {
+    text-align: center;
+    font-weight: normal;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 70%;
+    margin: auto;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    background: black;
+}
+
+.card:hover {
+    background-image: radial-gradient(circle at var(--x) var(--y),
+            rgb(50, 50, 50), transparent 300px);
+    background-attachment: fixed;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -2px;
+    background-image: radial-gradient(circle at var(--x) var(--y),
+            white, transparent 100px);
+    background-attachment: fixed;
+}
+
+.desc {
+    color: gray;
+}
