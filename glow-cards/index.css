@@ -12,7 +12,7 @@ html {
 
 body {
     display: grid;
-    place-content: center;
+    align-content: center;
     gap: 20px;
     padding: 20px;
     background: black;
@@ -27,9 +27,11 @@ body {
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(32.5%, 1fr));
     gap: 12px;
-    width: 70%;
+    width: 100%;
+    max-width: 1000px;
+    min-width: 0;
     margin: auto;
 }
 
