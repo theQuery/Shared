@@ -1,0 +1,1 @@
+If you're on Windows, you can use the program by downloading the resolutio.exe file. It's made for Windows devices that can toggle between HD and UHD screen resolutions.
