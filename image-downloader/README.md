@@ -1,9 +1,12 @@
+# Image Downloader
+
+## Instructions
 1. Create a `.env` file in the same folder as the source file.
 2. Specify the following properties:
-    - WEBSITE_URL: The URL of the website to search for images.
-    - XPATH: The path through the HTML where the image URL's are found.
-    - ATTRIBUTE: The attribute which value you want to read as the image URL.
-    - BASE_PATH: The location to download the images to.
+    - **WEBSITE_URL:** The URL of the website to search for images.
+    - **XPATH:** The path through the HTML where the image URL's are found.
+    - **ATTRIBUTE:** The attribute which value you want to read as the image URL.
+    - **BASE_PATH:** The location to download the images to.
 
     Consider the following example: 
     ```js
